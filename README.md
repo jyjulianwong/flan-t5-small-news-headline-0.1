@@ -40,3 +40,15 @@ jupyter kernelspec uninstall flan-t5-small-news-headline-0.1
 ```bash
 jupyter lab
 ```
+
+## FAQs
+
+### `datasets` package version restrictions
+
+- `datasets==2.x.x`:
+    - cannot handle Windows file path formats when determining path from cache and will mix with Linux file path formats
+- `datasets==3.x.x`:
+    - will "forget" global variables when running `.map(...)` due to `multiprocessing` module error
+- `datasets==4.7.0`:
+    - cannot handle dataset builder scripts (e.g. `financial-phrasebook`)
+    - will "forget" global variables when running `.map(...)` due to `multiprocessing` module error

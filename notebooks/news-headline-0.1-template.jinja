@@ -1,0 +1,15 @@
+{% set system = messages | selectattr("role", "equalto", "system") | map(attribute="content") | list %}
+{% set user = messages | selectattr("role", "equalto", "user") | map(attribute="content") | list %}
+{% set assistant = messages | selectattr("role", "equalto", "assistant") | map(attribute="content") | list %}
+
+{% if system %}
+Task: {{ system[0] }}
+
+{% endif %}
+
+Input:
+{{ user[-1] }}
+
+Output:{% if assistant %} {{ assistant[-1] }}{% endif %}
+{% if add_generation_prompt and not assistant %}
+{% endif %}
